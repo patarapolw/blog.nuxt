@@ -12,12 +12,7 @@ In order to be SEO-friendly and on GitHub Pages as well, as GitHub Pages doesn't
 
 ## Installation
 
-```
-npm init -y
-npm i https://github.com/patarapolw/blog.nuxt.git
-```
-
-- Then, add `blog.nuxt` and `blog.nuxt -b` to `"scripts"` section of `package.json`
+- `npm i -g https://github.com/patarapolw/blog.nuxt.git`
 - Create `config.json`, filled with settings, as will be describe in the example
 - `blog.nuxt` to run a development server. `blog.nuxt -b` to build for GitHub Pages.
 
@@ -26,6 +21,21 @@ npm i https://github.com/patarapolw/blog.nuxt.git
 - You might use <https://www.npmjs.com/package/gh-pages>
 - `gh-pages -d dist -t true`
 
+## Development mode
+
+```
+npm init -y
+git init
+git submodule add https://github.com/patarapolw/blog.nuxt.git
+npm i ./blog.nuxt
+```
+
 ## Example
 
 <https://patarapolw.github.io/blog>
+
+## Known bugs
+
+<https://github.com/nuxt/typescript/issues/175>
+
+In short, you need to install `blog.nuxt` first, and then `@nuxt/typescript-build` afterwards.

@@ -23,9 +23,9 @@ export default class Sidebar extends Vue {
   constructor(...props: any[]) {
     super(...props);
 
-    try {
-      this.aboveHtml = require("@/static/build/sidebar-above.html").default;
-    } catch(e) {}
+    // try {
+    //   this.aboveHtml = require("@/static/build/sidebar-above.html").default;
+    // } catch(e) {}
 
     try {
       this.belowHtml = require("@/static/build/sidebar-below.html").default;

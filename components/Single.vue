@@ -13,7 +13,7 @@ import Post from "@/components/Post.vue";
 import Empty from "@/components/Empty.vue";
 import moment from "moment";
 import dotProp from "dot-prop";
-import config from "@/user/config.json";
+import config from "@/assets/build/config.json";
 import headers from "@/assets/build/headers.json";
 
 @Component({

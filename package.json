@@ -17,7 +17,6 @@
     "bin:start": "ts-node -P tsconfig.bin.json bin/cli.ts"
   },
   "dependencies": {
-    "@nuxt/typescript-build": "^0.3.4",
     "@types/fs-extra": "^8.0.1",
     "@types/highlight.js": "^9.12.3",
     "@types/hyperscript": "0.0.3",
@@ -47,5 +46,11 @@
     "sass-loader": "^8.0.0",
     "showdown": "^1.9.1",
     "vue-disqus": "^3.0.5"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^0.3.4"
+  },
+  "peerDependencies": {
+    "@nuxt/typescript-build": "^0.3.4"
   }
 }

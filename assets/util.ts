@@ -1,7 +1,5 @@
 import hljs from "highlight.js";
 import hljsDefineVue from "highlightjs-vue";
-import config from "@/user/config.json";
-import resources from "@/assets/build/resources.json";
 
 export function escapeRegExp(s: string) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // $& means the whole matched string

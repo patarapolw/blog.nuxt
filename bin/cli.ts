@@ -6,7 +6,7 @@ import program from "commander";
 
 program
   .option("-b --build")
-  .option("-d --dir");
+  .option("-d --dir <path>");
 
 program.parse(process.argv);
 
@@ -18,7 +18,7 @@ if (program.build) {
     stdio: "inherit"
   });
 } else {
-  spawnSync("npm", ["start"], {
+  spawnSync("npm", ["run", "dev"], {
     cwd: ROOT,
     stdio: "inherit"
   });

@@ -9,7 +9,7 @@ const child_process_1 = require("child_process");
 const commander_1 = __importDefault(require("commander"));
 commander_1.default
     .option("-b --build")
-    .option("-d --dir");
+    .option("-d --dir <path>");
 commander_1.default.parse(process.argv);
 build_1.loadConfig(commander_1.default.dir || process.cwd());
 if (commander_1.default.build) {
@@ -19,7 +19,7 @@ if (commander_1.default.build) {
     });
 }
 else {
-    child_process_1.spawnSync("npm", ["start"], {
+    child_process_1.spawnSync("npm", ["run", "dev"], {
         cwd: build_1.ROOT,
         stdio: "inherit"
     });
