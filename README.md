@@ -1,6 +1,6 @@
 # blog.nuxt
 
-Markdown static blog generator with Showdown.js based on Nuxt
+Markdown static blog generator with Showdown.js and Pug based on Nuxt
 
 ## Why another static blog generator?
 
@@ -8,7 +8,7 @@ I find Showdown.js easy to extend with <https://github.com/patarapolw/indented-f
 
 ## Why Nuxt?
 
-In order to be SEO-friendly and on GitHub Pages as well.
+In order to be SEO-friendly and on GitHub Pages as well, as GitHub Pages doesn't allow SPA with History Router.
 
 ## Installation
 
