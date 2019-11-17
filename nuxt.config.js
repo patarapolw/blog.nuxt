@@ -1,7 +1,7 @@
 const config = require("./assets/build/config.json");
 const routes = require("./assets/build/routes.json");
 const resources = require("./assets/build/resources.json");
-// const meta = require("./assets/build/meta.json");
+const meta = require("./assets/build/meta.json");
 
 const { baseUrl } = config;
 
@@ -72,6 +72,6 @@ export default {
   },
   generate: {
     routes,
-    dir: `${process.cwd()}/${config.outDir || "dist"}`
+    dir: `${meta.filepath}/${config.outDir || "dist"}`
   }
 }
