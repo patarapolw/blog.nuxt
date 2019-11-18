@@ -30,6 +30,18 @@ git submodule add https://github.com/patarapolw/blog.nuxt.git
 npm i ./blog.nuxt
 ```
 
+## Creating add new theme
+
+- Add these to `.gitignore`
+
+```
+# Blog.nuxt
+assets/build/
+static/build/
+```
+
+- Edit `nuxt.config.js`
+
 ## Example
 
 <https://patarapolw.github.io/blog>
