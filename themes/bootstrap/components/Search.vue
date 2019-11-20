@@ -12,8 +12,7 @@ div
 import Post from "@/components/Post.vue";
 import Empty from "@/components/Empty.vue";
 import QParser from "q2filter";
-import { normalizeArray } from "@/assets/util";
-import headers from "@/assets/build/headers.json";
+import { normalizeArray, currentPosts } from "@/assets/util";
 import config from "@/assets/build/config.json";
 
 export default {
@@ -59,7 +58,7 @@ export default {
           desc: true
         }
       });
-      let ps = parser.parse(Object.values(headers));
+      let ps = parser.parse(currentPosts());
       const { perPage } = config.posts;
       this.perPage = perPage;
       this.count = ps.length;

@@ -2,7 +2,7 @@ const config = require("./assets/build/config.json");
 const routes = require("./assets/build/routes.json");
 const resources = require("./assets/build/resources.json");
 const meta = require("./assets/build/meta.json");
-const headers = require("./assets/build/headers.json");
+const { currentPosts } = require("./assets/util.js");
 const QParser = require("q2filter").default;
 const htmlToText = require('html-to-text');
 
@@ -16,7 +16,7 @@ const qp = new QParser("", {
   }
 });
 
-const h = qp.parse(Object.values(headers))[0];
+const h = qp.parse(currentPosts())[0];
 const metaImage = h ? h.image : config.image;
 const description = htmlToText.fromString((h ? h.teaser : config.description) || "");
 

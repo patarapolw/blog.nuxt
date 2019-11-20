@@ -4,9 +4,8 @@ search(:q="`${q} ${$route.params.tName}`")
 
 <script>
 import Search from "@/components/Search.vue";
-import { normalizeArray } from "@/assets/util";
+import { normalizeArray, currentPosts } from "@/assets/util";
 import config from "@/assets/build/config.json";
-import headers from "@/assets/build/headers.json";
 
 export default {
   components: { Search },
@@ -23,7 +22,7 @@ export default {
       }
     });
 
-    const h = qp.parse(Object.values(headers))[0];
+    const h = qp.parse(currentPosts())[0];
 
     if (h) {
       const metaImage = h.image;

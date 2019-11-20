@@ -9,9 +9,8 @@ div
 </template>
 
 <script>
-import { highlightBlock } from "@/assets/util";
+import { highlightBlock, currentPosts } from "@/assets/util";
 import config from "@/assets/build/config.json";
-import headers from "@/assets/build/headers.json";
 import resources from "@/assets/build/resources.json";
 
 let aboveHtml = "";
@@ -37,7 +36,7 @@ export default {
   computed: {
     tags() {
       const tagList = {};
-      Object.values(headers).forEach((p) => {
+      currentPosts().forEach((p) => {
         for (const t of p.tag || []) {
           tagList[t] = (tagList[t] || 0) + 1;
         }
