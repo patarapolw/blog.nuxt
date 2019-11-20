@@ -44,4 +44,5 @@ static/build/
 
 ## Example
 
-<https://patarapolw.github.io/blog>
+- <https://patarapolw.github.io/blog>
+  - I also used a different theme from default, which will probably be more updated. You can get the idea here.
