@@ -1,28 +1,29 @@
-import fs from "fs-extra";
-import del from "del";
-import glob from "fast-glob";
-import path from "path";
-import matter from "gray-matter";
-import { md, pugFilters } from "./make-html";
-import pug from "pug";
+const fs = require("fs-extra");
+const del = require("del");
+const glob = require("fast-glob");
+const path = require("path");
+const matter = require("gray-matter");
+const { parseContent } = require("./mark-html");
 
-export const ROOT = path.dirname(__dirname);
+function loadConfig(filepath, ROOT, keep) {
+  // ROOT = ROOT || path.dirname(__dirname);
 
-export function loadConfig(filepath: string) {
-  const headers: any = {};
-  let routes: string[] = [];
-  const resources: string[] = [];
-  const meta: any = {
-    filepath
+  const headers = {};
+  let routes = [];
+  const resources = [];
+  const meta = {
+    filepath: path.resolve(filepath)
   };
 
-  const buildDirs = [
-    `${ROOT}/assets/build`,
-    `${ROOT}/static/build`
-  ];
-
-  del.sync(buildDirs);
-  buildDirs.forEach((b) => fs.ensureDirSync(b));
+  if (!keep) {
+    const buildDirs = [
+      `${ROOT}/assets/build`,
+      `${ROOT}/static/build`
+    ];
+  
+    del.sync(buildDirs);
+    buildDirs.forEach((b) => fs.ensureDirSync(b));
+  }
 
   fs.copyFileSync(`${filepath}/config.json`, `${ROOT}/assets/build/config.json`);
 
@@ -39,7 +40,7 @@ export function loadConfig(filepath: string) {
       const { data, content } = matter(fs.readFileSync(f, "utf8"));
       const contentParts = content.split(/\n===\n/);
 
-      if (data) {
+      if (data && Object.keys(data).length > 0) {
         headers[p.name] = {
           ...data,
           teaser: parseContent(contentParts[0], p.ext),
@@ -51,7 +52,7 @@ export function loadConfig(filepath: string) {
       }
 
       if (Array.isArray(data.tag)) {
-        routes.push(...data.tag.map((el: string) => `/tag/${el}`));
+        routes.push(...data.tag.map((el) => `/tag/${el}`));
       }
 
       fs.ensureFileSync(`${ROOT}/static${url}`);
@@ -80,15 +81,10 @@ export function loadConfig(filepath: string) {
   fs.writeFileSync(`${ROOT}/assets/build/meta.json`, JSON.stringify(meta));
 }
 
-function parseContent(s: string, ext: string) {
-  if (ext === ".pug") {
-    return pug.compile(s, {filters: pugFilters})();
-  } else if (ext === ".md") {
-    return md.md2html(s);
-  }
-  return s;
-}
-
 if (require.main === module) {
   loadConfig("user");
 }
+
+module.exports = {
+  loadConfig
+};

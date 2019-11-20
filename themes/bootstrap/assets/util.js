@@ -1,11 +1,11 @@
 import hljs from "highlight.js";
 import hljsDefineVue from "highlightjs-vue";
 
-export function escapeRegExp(s: string) {
+export function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // $& means the whole matched string
 }
 
-export function normalizeArray(it: any): any {
+export function normalizeArray(it) {
   if (Array.isArray(it)) {
     return it[0];
   }
@@ -15,7 +15,7 @@ export function normalizeArray(it: any): any {
 
 hljsDefineVue(hljs);
 
-export function highlightBlock(parent: Element) {
+export function highlightBlock(parent) {
   Array.from(parent.querySelectorAll("pre code:not(.hljs)")).forEach((el) => {
     hljs.highlightBlock(el);
   });

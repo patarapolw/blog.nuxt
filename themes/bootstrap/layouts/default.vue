@@ -18,31 +18,32 @@ div
         sidebar
 </template>
 
-<script lang="ts">
-import { Vue, Component, Watch } from "nuxt-property-decorator";
+<script>
 import Sidebar from "@/components/Sidebar.vue";
 import config from "@/assets/build/config.json";
 
-@Component({
-  components: { Sidebar }
-})
-export default class App extends Vue {
-  banner = config.banner;
-  tabs = config.tabs || [];
-  q = "";
-
+export default {
+  components: { Sidebar },
+  data() {
+    return {
+      banner: config.banner,
+      tabs: config.tabs || [],
+      q: ""
+    };
+  },
   mounted() {
-    this.onRouteChanged();
-  }
-
-  @Watch("$route", {deep: true})
-  onRouteChanged() {
-    this.q = this.$route.query.q as string || "";
-  }
-
-  onSearchKeydown(evt: KeyboardEvent) {
-    if (evt.code === "Enter") {
-      this.$router.push({query: {q: this.q}});
+    this.q = this.$route.query.q || "";
+  },
+  watch: {
+    "$route.query.q"(q) {
+      this.q = q || "";
+    }
+  },
+  methods: {
+    onSearchKeydown(evt) {
+      if (evt.code === "Enter") {
+        this.$router.push({query: {q: this.q}});
+      }
     }
   }
 }

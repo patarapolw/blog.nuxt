@@ -7,22 +7,23 @@ div
     empty
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from "nuxt-property-decorator";
+<script>
 import Post from "@/components/Post.vue";
 import Empty from "@/components/Empty.vue";
-import moment from "moment";
 import dotProp from "dot-prop";
 import config from "@/assets/build/config.json";
-import headers from "@/assets/build/headers.json";
 
-@Component({
+export default {
   components: {
     Post, Empty
+  },
+  props: {
+    name: String
+  },
+  data() {
+    return {
+      disqus: dotProp.get(config, "external.disqus") || ""
+    }
   }
-})
-export default class Search extends Vue {
-  @Prop() name!: string;
-  disqus: string = dotProp.get(config, "external.disqus") || "";
 }
 </script>
