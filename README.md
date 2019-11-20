@@ -45,9 +45,3 @@ static/build/
 ## Example
 
 <https://patarapolw.github.io/blog>
-
-## Known bugs
-
-<https://github.com/nuxt/typescript/issues/175>
-
-In short, you need to install `blog.nuxt` first, and then `@nuxt/typescript-build` afterwards.
