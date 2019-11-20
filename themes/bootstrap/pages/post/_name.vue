@@ -29,6 +29,11 @@ export default {
             content: description
           },
           {
+            hid: "keywords",
+            name: "keywords",
+            content: (h.keyword || h.tag || []).join(", ")
+          },
+          {
             hid: 'og:title',
             property: 'og:title',
             content: title

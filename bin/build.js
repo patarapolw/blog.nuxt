@@ -6,11 +6,10 @@ const matter = require("gray-matter");
 const { parseContent } = require("./mark-html");
 
 function loadConfig(filepath, ROOT, keep) {
-  // ROOT = ROOT || path.dirname(__dirname);
-
   const headers = {};
   let routes = [];
   const resources = [];
+  const tags = [];
   const meta = {
     filepath: path.resolve(filepath)
   };
@@ -52,6 +51,7 @@ function loadConfig(filepath, ROOT, keep) {
       }
 
       if (Array.isArray(data.tag)) {
+        tags.push(...data.tag);
         routes.push(...data.tag.map((el) => `/tag/${el}`));
       }
 
@@ -74,6 +74,7 @@ function loadConfig(filepath, ROOT, keep) {
   });
 
   routes = Array.from(new Set(routes));
+  meta.tags = Array.from(new Set(tags));
 
   fs.writeFileSync(`${ROOT}/assets/build/headers.json`, JSON.stringify(headers));
   fs.writeFileSync(`${ROOT}/assets/build/routes.json`, JSON.stringify(routes));
