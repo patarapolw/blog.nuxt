@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  h1.tag(v-if="$route.params.tName") {{toTitleCase($route.params.tName)}}
+  h1.tag.mb-3(v-if="$route.params.tName") {{toTitleCase($route.params.tName)}}
   div(v-if="posts")
     post(v-for="p in posts" :name="p.name" :is-teaser="true" :key="p.name")
     b-pagination(v-model="page" :total-rows="count" :per-page="perPage")

@@ -5,9 +5,12 @@ b-card.mb-3.post
     .post-meta-author
       a(:href="author.link"): b-img.mr-2(rounded="circle" :src="author.avatar")
       a(:href="author.link") {{author.login}}
-  h2
+  h2.mb-3
+    span(v-if="!isTeaser") {{title}}
+  div(v-if="header.image" :class="(isTeaser && min800) ? 'wh-300': 'full-width'")
+    b-card-img.mb-3(:src="header.image")
+  h2.mb-3
     b-link(v-if="isTeaser" :to="to") {{title}}
-    span(v-else="") {{title}}
   div
     div(v-if="isTeaser" v-html="teaser")
     div(v-else="" v-html="content")
@@ -68,6 +71,13 @@ export default {
     },
     url() {
       return `${config.baseUrl || ""}/post/${this.name}`;
+    },
+    min800() {
+      if (process.client) {
+        return matchMedia("(min-width: 800px)").matches;
+      }
+
+      return true;
     }
   },
   async mounted() {
@@ -80,3 +90,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@media only screen and (min-width: 800px) {
+  .wh-300 {
+    max-width: 300px;
+    max-height: 300px;
+    float: right;
+  }
+}
+
+.full-width {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+  max-width: calc(100% + 2.5rem);
+  text-align: center;
+}
+</style>

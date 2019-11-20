@@ -24,6 +24,28 @@ import config from "@/assets/build/config.json";
 
 export default {
   components: { Sidebar },
+  head() {
+    if (config.baseUrl) {
+      const url = config.fullUrl + this.$route.path;
+
+      return {
+        link: [
+          {
+            rel: 'canonical',
+            href: url,
+          },
+        ],
+        meta: [
+          {
+            hid: 'og:url',
+            property: 'og:url',
+            content: config.fullUrl
+          },
+        ]
+      }
+    }
+    return {};
+  },
   data() {
     return {
       banner: config.banner,
