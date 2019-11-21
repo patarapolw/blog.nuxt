@@ -4,12 +4,13 @@ const glob = require("fast-glob");
 const path = require("path");
 const matter = require("gray-matter");
 const { parseContent } = require("./mark-html");
+const moment = require("moment");
 
 function loadConfig(filepath, ROOT, keep) {
   const headers = {};
   let routes = [];
   const resources = [];
-  const tags = [];
+  let tags = [];
   const meta = {
     filepath: path.resolve(filepath)
   };
@@ -46,13 +47,17 @@ function loadConfig(filepath, ROOT, keep) {
           name: p.name,
           url
         }
+        if (headers[p.name].date) {
+          const m = moment(headers[p.name].date);
+          headers[p.name].date = m.add(-m.utcOffset(), "minute").toISOString();
+          console.log(headers[p.name].date);
+        }
 
         routes.push(`/post/${p.name}`);
       }
 
       if (Array.isArray(data.tag)) {
         tags.push(...data.tag);
-        routes.push(...data.tag.map((el) => `/tag/${el}`));
       }
 
       fs.ensureFileSync(`${ROOT}/static${url}`);
@@ -73,8 +78,10 @@ function loadConfig(filepath, ROOT, keep) {
     }
   });
 
+  tags = tags.filter((t, i) => tags.map((el) => el.toLocaleLowerCase()).indexOf(t.toLocaleLowerCase()) === i);
+  routes.push(...tags.map((el) => `/tag/${el}`));
   routes = Array.from(new Set(routes));
-  meta.tags = Array.from(new Set(tags));
+  meta.tags = tags;
 
   fs.writeFileSync(`${ROOT}/assets/build/headers.json`, JSON.stringify(headers));
   fs.writeFileSync(`${ROOT}/assets/build/routes.json`, JSON.stringify(routes));
