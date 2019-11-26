@@ -50,7 +50,6 @@ function loadConfig(filepath, ROOT, keep) {
         if (headers[p.name].date) {
           const m = moment(headers[p.name].date);
           headers[p.name].date = m.add(-m.utcOffset(), "minute").toISOString();
-          console.log(headers[p.name].date);
         }
 
         routes.push(`/post/${p.name}`);
