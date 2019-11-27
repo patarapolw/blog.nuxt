@@ -44,5 +44,6 @@ static/build/
 
 ## Example
 
-- <https://patarapolw.github.io/blog>
+- <https://www.polvcode.dev>
   - I also used a different theme from default, which will probably be more updated. You can get the idea here.
+- <https://zhlab.polvcode.dev>
