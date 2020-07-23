@@ -20,7 +20,7 @@
   "author": "Pacharapol Withayasakpunt <patarapolw@gmail.com> (https://polvcode.dev)",
   "license": "MIT",
   "dependencies": {
-    "commander": "^4.0.1",
+    "commander": "^4.1.1",
     "del": "^5.1.0",
     "fast-glob": "^3.1.0",
     "fs-extra": "^8.1.0",
