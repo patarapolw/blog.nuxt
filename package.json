@@ -27,7 +27,7 @@
     "gray-matter": "^4.0.2",
     "hyperscript": "^2.0.2",
     "moment": "^2.24.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "showdown": "^1.9.1"
   }
 }
