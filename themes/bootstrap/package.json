@@ -17,7 +17,7 @@
     "highlight.js": "^9.16.2",
     "highlightjs-vue": "git+https://github.com/patarapolw/highlightjs-vue.git",
     "html-to-text": "^5.1.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "nuxt": "^2.0.0",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
